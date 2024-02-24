@@ -1,0 +1,25 @@
+{
+  "name": "@blogs/prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-schemas": "prisma generate && prisma format",
+    "post-install": "yarn generate-schemas"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "@prisma/extension-accelerate": "^0.6.2",
+    "@prisma/generator-helper": "^5.8.1",
+    "prisma": "^5.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
