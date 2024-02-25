@@ -24,8 +24,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
-    "@prisma/client": "^4.8.1",
     "next-auth": "^4.24.5",
-    "prisma": "^1.0.0"
+    "@prisma/client": "^5.10.2",
+    "@prisma/extension-accelerate": "^0.6.2",
+    "@prisma/generator-helper": "^5.8.1",    
+    "prisma": "^5.8.1"
   }
 }

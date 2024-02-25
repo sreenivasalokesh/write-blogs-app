@@ -1,6 +1,6 @@
 import { httpBatchLink, loggerLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
-import { AppRouter } from '../server/routes/hello/_route';
+import { AppRouter } from '../server/routes';
 
 function getBaseUrl() {
   if (typeof window !== 'undefined')
@@ -22,7 +22,7 @@ function getBaseUrl() {
 
 export const trpc = createTRPCNext<AppRouter>({
   config(opts) {
-    console.log("####opts: ",opts)
+    //console.log("####opts: ",opts)
     return {
       links: [
         loggerLink({

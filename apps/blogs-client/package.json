@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@blogs/trpc": "*",
+    "@blogs/prisma": "*",
     "@tanstack/react-query": "^5.17.19",
     "@trpc/client": "^11.0.0-next-beta.242",
     "@trpc/next": "^11.0.0-next-beta.242",
