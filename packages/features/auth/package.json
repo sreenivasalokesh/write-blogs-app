@@ -1,0 +1,18 @@
+{
+  "name": "@blogs/features-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",  
+  "types": "./index.ts",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@blogs/prisma":"*",
+    "next-auth": "^4.24.5"
+  }
+}

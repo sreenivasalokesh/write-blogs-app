@@ -1,11 +1,12 @@
-import { httpBatchLink, loggerLink } from '@trpc/client';
-import { createTRPCNext } from '@trpc/next';
-import { AppRouter } from '../server/routes';
+import { httpBatchLink, loggerLink } from "@trpc/client";
+import { createTRPCNext } from "@trpc/next";
+import { AppRouter } from "../server/routes/index";
+import superjson from "superjson";
 
 function getBaseUrl() {
-  if (typeof window !== 'undefined')
+  if (typeof window !== "undefined")
     // browser should use relative path
-    return '';
+    return "";
 
   if (process.env.VERCEL_URL)
     // reference for vercel.com
@@ -19,15 +20,20 @@ function getBaseUrl() {
   return `http://localhost:${process.env.PORT ?? 3000}`;
 }
 
-
 export const trpc = createTRPCNext<AppRouter>({
   config(opts) {
     //console.log("####opts: ",opts)
+
     return {
       links: [
         loggerLink({
-          enabled: (opts) => {console.log("HEL: ", opts,"s####", ); 
-          return !!process.env.NEXT_PUBLIC_DEBUG || (opts.direction === "down" && opts.result instanceof Error)},
+          enabled: (opts) => {
+            console.log("HEL: ", opts, "s####");
+            return (
+              !!process.env.NEXT_PUBLIC_DEBUG ||
+              (opts.direction === "down" && opts.result instanceof Error)
+            );
+          },
         }),
         httpBatchLink({
           /**
@@ -44,14 +50,15 @@ export const trpc = createTRPCNext<AppRouter>({
           },
         }),
       ],
+
+      transformer: superjson,
     };
   },
   /**
    * @link https://trpc.io/docs/v11/ssr
    **/
-  ssr: true,
+  ssr: false,
 });
-
 
 const resolveEndpoint = (links: any) => {
   // TODO: Update our trpc routes so they are more clear.
@@ -61,7 +68,7 @@ const resolveEndpoint = (links: any) => {
   // - viewer.public.i18n - 3 segments paths can be public or authed
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (ctx: any) => {
-    console.log(ctx)
+    console.log(ctx);
     const parts = ctx.op.path.split(".");
     let endpoint;
     let path = "";

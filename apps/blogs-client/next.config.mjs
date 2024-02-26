@@ -2,7 +2,7 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   transpilePackages: ["@blogs/trpc", "@blogs/prisma"],
   images: {
     domains: [

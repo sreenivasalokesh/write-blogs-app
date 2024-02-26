@@ -1,30 +1,22 @@
-import { publicProcedure, router } from '../../trpc';
-import * as fs from "fs"; 
-
-let data = fs.readFileSync("./authorization.json", 'utf8')
+import { publicProcedure, router } from "../../trpc";
 
 type GreetingResponse = {
-  message: String,
-  type: String
-}
-export const authRouter =  router({
-  
-  addUser: publicProcedure.mutation(async (opts: any)=>{
-    console.log("##########ADD USER Triggered")
+  message: String;
+  type: String;
+};
+export const authRouter = router({
+  updateAuth: publicProcedure.mutation(async (opts: any) => {
+    console.log("##########Update USER Triggered 1", await opts.ctx);
   }),
 
-  userauth: publicProcedure.query((email: string) => {
-    //check if user has entry in user table
-    //if entry - get the permission
-    //if no entry - make entry with permission Read
-    //generate jwt
-    const resp : GreetingResponse = {
+  userauth: publicProcedure.query(() => {
+    const resp: GreetingResponse = {
       message: "Hello! Good morning",
-      type: "GM"
-    }
-  
+      type: "GM",
+    };
+
     return resp;
   }),
-
 });
 
+export type AuthRouter = typeof authRouter;

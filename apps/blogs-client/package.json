@@ -11,15 +11,17 @@
   "dependencies": {
     "@blogs/trpc": "*",
     "@blogs/prisma": "*",
-    "@tanstack/react-query": "^5.17.19",
-    "@trpc/client": "^11.0.0-next-beta.242",
-    "@trpc/next": "^11.0.0-next-beta.242",
-    "@trpc/react-query": "^11.0.0-next-beta.242",
-    "@trpc/server": "^11.0.0-next-beta.242",
+    "@calcom/features": "*",
+    "@tanstack/react-query": "4.18.0",
+    "@trpc/client": "10.45.1",
+    "@trpc/next": "10.45.1",
+    "@trpc/react-query":  "10.45.1",
+    "@trpc/server":  "10.45.1",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "superjson": "1.9.1"
   },
   "devDependencies": {
     "@types/node": "^20",
