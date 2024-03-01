@@ -31,7 +31,9 @@ model Blogs {
   id          Int       @id @default(autoincrement())
   title       String
   description String
+  imageSrc    String
   user        Bloguser  @relation(fields: [bloguserId], references: [id])
+  createdAt   DateTime  @default(now()) @db.Date
   Like        Like[]
   Comment     Comment[]
   bloguserId  Int

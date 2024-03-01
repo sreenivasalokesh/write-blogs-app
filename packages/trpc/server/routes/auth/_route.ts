@@ -1,21 +1,51 @@
 import { publicProcedure, router } from "../../trpc";
+import { prisma } from "@blogs/prisma";
+import { z } from "zod";
 
 type GreetingResponse = {
   message: String;
   type: String;
 };
 export const authRouter = router({
-  updateAuth: publicProcedure.mutation(async (opts: any) => {
-    console.log("##########Update USER Triggered 1", await opts.ctx);
+  updateAuth: publicProcedure.input(z.string()).mutation(async (opts: any) => {
+    const { input } = opts;
+    console.log("###input: ", input);
+    const email = await opts.ctx.session.user.email;
+    console.log("User email", email);
+
+    const currentPrivilege = await prisma.auth.findFirst({
+      where: {
+        user: {
+          email,
+        },
+      },
+    });
+
+    const result = await prisma.auth.update({
+      data: {
+        privilege: input,
+      },
+      where: {
+        id: currentPrivilege.id,
+      },
+    });
+
+    console.log("####result", result.privilege);
+    return result.privilege;
   }),
 
-  userauth: publicProcedure.query(() => {
-    const resp: GreetingResponse = {
-      message: "Hello! Good morning",
-      type: "GM",
-    };
+  getAuth: publicProcedure.query(async (opts: any) => {
+    const email = await opts.ctx.session.user.email;
+    const currentPrivilege = await prisma.auth.findFirst({
+      where: {
+        user: {
+          email,
+        },
+      },
+    });
 
-    return resp;
+    console.log("####record", currentPrivilege.privilege);
+    return currentPrivilege.privilege;
   }),
 });
 

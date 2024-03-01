@@ -11,7 +11,7 @@
   "dependencies": {
     "@blogs/trpc": "*",
     "@blogs/prisma": "*",
-    "@calcom/features": "*",
+    "@blogs/features": "*",
     "@tanstack/react-query": "4.18.0",
     "@trpc/client": "10.45.1",
     "@trpc/next": "10.45.1",

@@ -10,14 +10,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {    
-    "@calcom/features": "*",
+  "dependencies": {
+    "@blogs/prisma": "*",
     "@tanstack/react-query": "4.18.0",
     "@trpc/client": "10.45.1",
     "@trpc/next": "10.45.1",
-    "@trpc/react-query":  "10.45.1",
-    "@trpc/server":  "10.45.1",
-    "zod": "^3.22.4",
-    "superjson": "1.9.1"
+    "@trpc/react-query": "10.45.1",
+    "@trpc/server": "10.45.1",
+    "superjson": "1.9.1",
+    "zod": "^3.22.4"
   }
 }

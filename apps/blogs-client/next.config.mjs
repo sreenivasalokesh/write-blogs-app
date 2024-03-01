@@ -5,8 +5,12 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@blogs/trpc", "@blogs/prisma"],
   images: {
-    domains: [
-      "images.pexels.com"
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      }
+      
     ]
   },
   webpack: (config, { webpack, buildId }) => {

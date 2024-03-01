@@ -6,9 +6,6 @@ import { authOptions } from "@blogs/features/auth/authOptions";
 
 export const createContext = async (opts: CreateNextContextOptions) => {
   const session = await getServerSession(opts.req, opts.res, authOptions);
-  console.log("#######createContext session", session);
-  //console.log("#######opts.req", opts.req);
-
   return {
     session,
   };
@@ -17,21 +14,15 @@ export const createContext = async (opts: CreateNextContextOptions) => {
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
 });
-
 export const router = t.router;
-export const procedure = t.procedure;
-
-export const publicProcedure = procedure.use(
+export const publicProcedure = t.procedure.use(
   async (opts: CreateNextContextOptions) => {
-    console.log("#########do nothing now", opts.ctx);
     return opts.next({
       ctx: {
-        // Infers the `session` as non-nullable
         session: opts.ctx.session,
       },
     });
   }
 );
 export const mergeRouter = t.mergeRouter;
-
 export type Context = Awaited<ReturnType<typeof createContext>>;

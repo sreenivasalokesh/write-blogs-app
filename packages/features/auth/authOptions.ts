@@ -18,11 +18,10 @@ export const authOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }: any) {
-      console.log("##########call back post sign in called", user.email);
-
       if (!user.email) {
         return "/unauthorized";
       }
+      console.log("Signed in as: ", user.email);
 
       const dbEmail = await prisma.bloguser.findFirst({
         where: {
@@ -30,7 +29,7 @@ export const authOptions = {
         },
       });
 
-      console.log("dbEmail: ", dbEmail);
+      console.log("Email from DB: ", dbEmail);
       if (!dbEmail) {
         try {
           await prisma.bloguser.create({
@@ -46,15 +45,14 @@ export const authOptions = {
         console.log("Saves data succesfully");
       }
 
-      console.log("here");
       return true;
     },
-    async session({ session, user, token }: any) {
-      // Return a cookie value as part of the session
-      // This is read when `req.query.nextauth.includes("session") && req.method === "GET"`
-      //session.someCookie = someCookie
-      console.log("#######NEXTAUTH: session ", session);
-      return { ...session };
-    },
+    // async session({ session, user, token }: any) {
+    //   // Return a cookie value as part of the session
+    //   // This is read when `req.query.nextauth.includes("session") && req.method === "GET"`
+    //   //session.someCookie = someCookie
+    //   console.log("#######NEXTAUTH: session ", session);
+    //   return { ...session, user123: "xyz" };
+    // },
   },
 };
